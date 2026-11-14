@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLTOOLS2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background"></div>
+    
+    <header class="glass-header">
+        <div class="header-content">
+            <h1 class="logo">JLTOOLS2</h1>
+            <div class="header-controls">
+                <div class="clock" id="clock">00:00:00</div>
+                <button class="glass-btn theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="action-bar glass-panel">
+            <button class="glass-btn primary" id="addAppBtn">
+                <span class="icon">➕</span>
+                Subir App
+            </button>
+            <button class="glass-btn secondary" id="editAppsBtn">
+                <span class="icon">✏️</span>
+                Editar App
+            </button>
+            <button class="glass-btn danger" id="selectModeBtn">
+                <span class="icon">☑️</span>
+                Seleccionar
+            </button>
+            <button class="glass-btn danger hidden" id="deleteSelectedBtn">
+                <span class="icon">🗑️</span>
+                Eliminar Seleccionados
+            </button>
+        </div>
+
+        <div class="apps-grid" id="appsGrid">
+            <!-- Las cards se generarán dinámicamente -->
+        </div>
+    </main>
+
+    <!-- Modal para subir/editar app -->
+    <div class="modal glass-modal" id="appModal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2 id="modalTitle">Subir App</h2>
+                <button class="close-btn" id="closeModal">✕</button>
+            </div>
+            <form id="appForm">
+                <input type="hidden" id="appId">
+                <div class="form-group">
+                    <label for="appName">Nombre de la App</label>
+                    <input type="text" id="appName" required placeholder="Ej: Mi App">
+                </div>
+                <div class="form-group">
+                    <label for="appDescription">Descripción</label>
+                    <textarea id="appDescription" required placeholder="Descripción de la app..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="appImage">Subir Imagen</label>
+                    <input type="file" id="appImage" accept="image/*">
+                    <div class="image-preview" id="imagePreview"></div>
+                </div>
+                <div class="form-group">
+                    <label for="appLink">Link de Descarga</label>
+                    <input type="url" id="appLink" required placeholder="https://...">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="glass-btn primary">Guardar</button>
+                    <button type="button" class="glass-btn secondary" id="cancelBtn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para seleccionar app a editar -->
+    <div class="modal glass-modal" id="editSelectModal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>Seleccionar App para Editar</h2>
+                <button class="close-btn" id="closeEditModal">✕</button>
+            </div>
+            <div class="apps-list" id="editAppsList">
+                <!-- Lista de apps para editar -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>

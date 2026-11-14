@@ -50,7 +50,6 @@ Puedes desplegar en:
 ## Colores
 
 - Negro: `#000000`
-- Rojo: `#ff0000`
 - Azul: `#0000ff`
 
 ## Optimizaciones

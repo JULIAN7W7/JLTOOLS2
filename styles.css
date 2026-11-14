@@ -10,6 +10,10 @@
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
     --accent-blue: #0000ff;
+    --accent-blue-light: #3333ff;
+    --glass-bg: rgba(0, 51, 255, 0.1);
+    --glass-border: rgba(0, 51, 255, 0.3);
+    --glass-shadow: rgba(0, 0, 0, 0.5);
 }
 
 body.light-mode {
@@ -17,6 +21,9 @@ body.light-mode {
     --bg-secondary: #e0e0e0;
     --text-primary: #000000;
     --text-secondary: #333333;
+    --glass-bg: rgba(0, 51, 255, 0.08);
+    --glass-border: rgba(0, 51, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.2);
 }
 
 body.light-mode .clock {
@@ -32,12 +39,41 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse at 20% 20%, rgba(0, 51, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(0, 51, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-light) 50%, var(--accent-blue) 100%);
+    opacity: 0.08;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(30deg);
+    }
+}
+
 .glass-header {
     position: sticky;
     top: 0;
     z-index: 100;
     padding: 15px 30px;
     margin-bottom: 30px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px var(--glass-shadow);
 }
 
 .header-content {
@@ -63,6 +99,20 @@ body {
     font-size: 2rem;
     font-weight: bold;
     color: var(--accent-blue);
+    padding: 12px 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px var(--glass-shadow);
+    border-color: var(--accent-blue-light);
 }
 
 .header-controls {
@@ -80,30 +130,43 @@ body {
     min-width: 120px;
     text-align: center;
     display: block;
+    padding: 10px 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--glass-shadow);
 }
 
 /* Buttons */
 .glass-btn {
     padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    background: var(--accent-blue);
-    color: white;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    color: var(--text-primary);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    box-shadow: 0 4px 16px var(--glass-shadow);
 }
 
 .glass-btn:hover {
-    opacity: 0.8;
+    background: var(--accent-blue);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--glass-shadow);
 }
 
 .glass-btn:active {
-    transform: scale(0.98);
+    transform: translateY(0);
 }
 
 .glass-btn.hidden {
@@ -118,10 +181,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    color: var(--text-primary);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--glass-shadow);
+}
+
+.theme-toggle:hover {
     background: var(--accent-blue);
     color: white;
-    border-radius: 8px;
 }
 
 /* Main Content */
@@ -136,6 +207,13 @@ body {
     gap: 15px;
     flex-wrap: wrap;
     margin-bottom: 30px;
+    padding: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px var(--glass-shadow);
 }
 
 /* Apps Grid */
@@ -147,21 +225,37 @@ body {
 
 /* App Card */
 .app-card {
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    padding: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+    box-shadow: 0 4px 20px var(--glass-shadow);
+}
+
+.app-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-blue-light), transparent);
+    opacity: 0.5;
 }
 
 .app-card:hover {
-    transform: translateY(-5px);
-    background: var(--accent-blue);
+    transform: translateY(-8px);
+    border-color: var(--accent-blue-light);
+    box-shadow: 0 12px 40px var(--glass-shadow);
 }
 
 .app-card.selected {
@@ -172,17 +266,18 @@ body {
 .app-card.selected::after {
     content: '✓';
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     background: var(--accent-blue);
     color: white;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    box-shadow: 0 4px 12px var(--glass-shadow);
 }
 
 .app-card-image {
@@ -230,7 +325,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: none;
     justify-content: center;
     align-items: center;
@@ -247,31 +344,45 @@ body {
     max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
-    background: var(--bg-secondary);
-    padding: 30px;
-    border-radius: 8px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px var(--glass-shadow);
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--text-secondary);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .modal-header h2 {
     font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .close-btn {
-    background: none;
-    border: none;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text-primary);
-    padding: 5px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.close-btn:hover {
+    background: var(--accent-blue);
+    color: white;
 }
 
 /* Form */
@@ -290,12 +401,15 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--text-secondary);
-    border-radius: 8px;
-    background: var(--bg-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     color: var(--text-primary);
     font-size: 1rem;
     font-family: inherit;
+    transition: all 0.2s;
 }
 
 .form-group textarea {
@@ -307,6 +421,7 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 51, 255, 0.1);
 }
 
 .image-preview {

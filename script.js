@@ -24,6 +24,14 @@ if (document.readyState === 'loading') {
     init();
 }
 
+// Hacer funciones globales para onclick
+window.openAddModal = openAddModal;
+window.openEditSelectModal = openEditSelectModal;
+window.toggleSelectMode = toggleSelectMode;
+window.deleteSelectedApps = deleteSelectedApps;
+window.toggleTheme = toggleTheme;
+window.closeModals = closeModals;
+
 function initializeSupabase() {
     try {
         supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);

@@ -1,10 +1,10 @@
 # JLTOOLS2
 
-Página web moderna con diseño Liquid Glass de Apple para gestionar y mostrar aplicaciones.
+Página web profesional con diseño Liquid Glass de Apple para gestionar y mostrar aplicaciones.
 
 ## Características
 
-- 🎨 Diseño Liquid Glass (estilo Apple)
+- 🎨 Diseño Liquid Glass profesional (estilo Apple con blur y saturación)
 - 🌙 Modo oscuro/claro
 - ⏰ Reloj en tiempo real
 - 📱 Responsive (PC y Android TV)

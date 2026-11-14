@@ -24,3 +24,4 @@ supabase-credentials.json
 
 # Supabase local config
 .supabase/
+supabase/

@@ -29,6 +29,11 @@ function initializeSupabase() {
 // Reloj en tiempo real
 function startClock() {
     const clock = document.getElementById('clock');
+    if (!clock) {
+        console.error('Elemento clock no encontrado');
+        return;
+    }
+
     const updateClock = () => {
         const now = new Date();
         const hours = String(now.getHours()).padStart(2, '0');
@@ -56,7 +61,9 @@ function toggleTheme() {
 
 function updateThemeIcon() {
     const icon = document.querySelector('#themeToggle .icon');
-    icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+    if (icon) {
+        icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+    }
 }
 
 // Cargar apps desde Supabase
@@ -341,28 +348,44 @@ async function saveApp(e) {
 
 // Event listeners
 function setupEventListeners() {
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-    document.getElementById('addAppBtn').addEventListener('click', openAddModal);
-    document.getElementById('editAppsBtn').addEventListener('click', openEditSelectModal);
-    document.getElementById('selectModeBtn').addEventListener('click', toggleSelectMode);
-    document.getElementById('deleteSelectedBtn').addEventListener('click', deleteSelectedApps);
-    document.getElementById('closeModal').addEventListener('click', closeModals);
-    document.getElementById('closeEditModal').addEventListener('click', () => {
-        document.getElementById('editSelectModal').classList.remove('active');
+    const themeToggle = document.getElementById('themeToggle');
+    const addAppBtn = document.getElementById('addAppBtn');
+    const editAppsBtn = document.getElementById('editAppsBtn');
+    const selectModeBtn = document.getElementById('selectModeBtn');
+    const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+    const closeModal = document.getElementById('closeModal');
+    const closeEditModal = document.getElementById('closeEditModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const appForm = document.getElementById('appForm');
+    const appModal = document.getElementById('appModal');
+    const editSelectModal = document.getElementById('editSelectModal');
+
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (addAppBtn) addAppBtn.addEventListener('click', openAddModal);
+    if (editAppsBtn) editAppsBtn.addEventListener('click', openEditSelectModal);
+    if (selectModeBtn) selectModeBtn.addEventListener('click', toggleSelectMode);
+    if (deleteSelectedBtn) deleteSelectedBtn.addEventListener('click', deleteSelectedApps);
+    if (closeModal) closeModal.addEventListener('click', closeModals);
+    if (closeEditModal) closeEditModal.addEventListener('click', () => {
+        if (editSelectModal) editSelectModal.classList.remove('active');
     });
-    document.getElementById('cancelBtn').addEventListener('click', closeModals);
-    document.getElementById('appForm').addEventListener('submit', saveApp);
+    if (cancelBtn) cancelBtn.addEventListener('click', closeModals);
+    if (appForm) appForm.addEventListener('submit', saveApp);
 
     // Cerrar modales al hacer clic fuera
-    document.getElementById('appModal').addEventListener('click', (e) => {
-        if (e.target.id === 'appModal') closeModals();
-    });
+    if (appModal) {
+        appModal.addEventListener('click', (e) => {
+            if (e.target.id === 'appModal') closeModals();
+        });
+    }
 
-    document.getElementById('editSelectModal').addEventListener('click', (e) => {
-        if (e.target.id === 'editSelectModal') {
-            document.getElementById('editSelectModal').classList.remove('active');
-        }
-    });
+    if (editSelectModal) {
+        editSelectModal.addEventListener('click', (e) => {
+            if (e.target.id === 'editSelectModal') {
+                editSelectModal.classList.remove('active');
+            }
+        });
+    }
 }
 
 // Utilidades

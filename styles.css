@@ -25,6 +25,10 @@ body.light-mode {
     --glass-shadow: rgba(0, 0, 0, 0.15);
 }
 
+body.light-mode .clock {
+    color: #000000 !important;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: var(--bg-primary);
@@ -91,15 +95,17 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: nowrap;
 }
 
 .clock {
     font-size: 1.5rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-    color: var(--text-primary);
+    color: #ffffff !important;
     min-width: 120px;
     text-align: center;
+    display: block;
 }
 
 /* Buttons */

@@ -21,3 +21,6 @@ Thumbs.db
 
 # Supabase credentials (si se guardan localmente)
 supabase-credentials.json
+
+# Supabase local config
+.supabase/

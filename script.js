@@ -1,6 +1,6 @@
-// Configuración de Supabase - Necesario configurar
-const SUPABASE_URL = 'TU_SUPABASE_URL';
-const SUPABASE_KEY = 'TU_SUPABASE_ANON_KEY';
+// Configuración de Supabase
+const SUPABASE_URL = 'https://blqtsgbkysfkpqrfyfpt.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJscXRzZ2JreXNma3BxcmZ5ZnB0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ2MTMzMDAsImV4cCI6MjExMDE4OTMwMH0.nArGREZ4goxv7WHQXPE-ahzD_5DoDGbzGdfiQpK2cK0';
 
 let supabase;
 let apps = [];

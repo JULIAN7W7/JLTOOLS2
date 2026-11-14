@@ -9,13 +9,20 @@ let selectedApps = new Set();
 let currentEditingApp = null;
 
 // Inicialización
-document.addEventListener('DOMContentLoaded', () => {
+function init() {
+    console.log('Iniciando aplicación...');
     initializeSupabase();
     loadTheme();
     startClock();
     loadApps();
     setupEventListeners();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 function initializeSupabase() {
     try {
@@ -28,6 +35,7 @@ function initializeSupabase() {
 
 // Reloj en tiempo real
 function startClock() {
+    console.log('Iniciando reloj...');
     const clock = document.getElementById('clock');
     if (!clock) {
         console.error('Elemento clock no encontrado');
@@ -39,20 +47,25 @@ function startClock() {
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
-        clock.textContent = `${hours}:${minutes}:${seconds}`;
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        clock.textContent = timeString;
+        console.log('Hora actualizada:', timeString);
     };
+
     updateClock();
     setInterval(updateClock, 1000);
 }
 
 // Modo oscuro/claro
 function loadTheme() {
+    console.log('Cargando tema...');
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.body.classList.toggle('light-mode', savedTheme === 'light');
     updateThemeIcon();
 }
 
 function toggleTheme() {
+    console.log('Cambiando tema...');
     document.body.classList.toggle('light-mode');
     const isLight = document.body.classList.contains('light-mode');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
@@ -63,6 +76,7 @@ function updateThemeIcon() {
     const icon = document.querySelector('#themeToggle .icon');
     if (icon) {
         icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+        console.log('Icono actualizado:', icon.textContent);
     }
 }
 
@@ -348,11 +362,8 @@ async function saveApp(e) {
 
 // Event listeners
 function setupEventListeners() {
-    const themeToggle = document.getElementById('themeToggle');
-    const addAppBtn = document.getElementById('addAppBtn');
-    const editAppsBtn = document.getElementById('editAppsBtn');
-    const selectModeBtn = document.getElementById('selectModeBtn');
-    const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+    console.log('Configurando event listeners...');
+
     const closeModal = document.getElementById('closeModal');
     const closeEditModal = document.getElementById('closeEditModal');
     const cancelBtn = document.getElementById('cancelBtn');
@@ -360,11 +371,6 @@ function setupEventListeners() {
     const appModal = document.getElementById('appModal');
     const editSelectModal = document.getElementById('editSelectModal');
 
-    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-    if (addAppBtn) addAppBtn.addEventListener('click', openAddModal);
-    if (editAppsBtn) editAppsBtn.addEventListener('click', openEditSelectModal);
-    if (selectModeBtn) selectModeBtn.addEventListener('click', toggleSelectMode);
-    if (deleteSelectedBtn) deleteSelectedBtn.addEventListener('click', deleteSelectedApps);
     if (closeModal) closeModal.addEventListener('click', closeModals);
     if (closeEditModal) closeEditModal.addEventListener('click', () => {
         if (editSelectModal) editSelectModal.classList.remove('active');
@@ -386,6 +392,8 @@ function setupEventListeners() {
             }
         });
     }
+
+    console.log('Event listeners configurados');
 }
 
 // Utilidades

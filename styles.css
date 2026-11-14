@@ -10,9 +10,6 @@
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
     --accent-blue: #0000ff;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --glass-shadow: rgba(0, 0, 0, 0.3);
 }
 
 body.light-mode {
@@ -20,9 +17,6 @@ body.light-mode {
     --bg-secondary: #e0e0e0;
     --text-primary: #000000;
     --text-secondary: #333333;
-    --glass-bg: rgba(0, 0, 0, 0.08);
-    --glass-border: rgba(0, 0, 0, 0.15);
-    --glass-shadow: rgba(0, 0, 0, 0.15);
 }
 
 body.light-mode .clock {
@@ -38,40 +32,12 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(135deg, var(--accent-blue) 0%, #1a1aff 100%);
-    opacity: 0.15;
-}
-
-/* Liquid Glass Effect - Optimizado para navegadores básicos */
-.glass-panel,
-.glass-header,
-.glass-modal .modal-content {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px var(--glass-shadow);
-}
-
-.glass-panel {
-    padding: 20px;
-}
-
 .glass-header {
     position: sticky;
     top: 0;
     z-index: 100;
     padding: 15px 30px;
     margin-bottom: 30px;
-    border-radius: 0 0 20px 20px;
 }
 
 .header-content {
@@ -82,13 +48,21 @@ body {
     margin: 0 auto;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 .logo {
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(90deg, var(--accent-blue), #6666ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-blue);
 }
 
 .header-controls {
@@ -111,12 +85,10 @@ body {
 /* Buttons */
 .glass-btn {
     padding: 12px 24px;
-    border: 2px solid var(--glass-border);
-    border-radius: 12px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    background: var(--accent-blue);
+    color: white;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
@@ -127,32 +99,11 @@ body {
 }
 
 .glass-btn:hover {
-    background: var(--glass-border);
-    transform: translateY(-2px);
+    opacity: 0.8;
 }
 
 .glass-btn:active {
-    transform: translateY(0);
-}
-
-.glass-btn.primary {
-    background: linear-gradient(135deg, var(--accent-blue), #6666ff);
-    border: none;
-    color: white;
-}
-
-.glass-btn.primary:hover {
-    opacity: 0.9;
-}
-
-.glass-btn.danger {
-    background: var(--accent-blue);
-    border: none;
-    color: white;
-}
-
-.glass-btn.danger:hover {
-    opacity: 0.9;
+    transform: scale(0.98);
 }
 
 .glass-btn.hidden {
@@ -167,7 +118,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--glass-border);
+    border: none;
+    background: var(--accent-blue);
+    color: white;
+    border-radius: 8px;
 }
 
 /* Main Content */
@@ -182,7 +136,6 @@ body {
     gap: 15px;
     flex-wrap: wrap;
     margin-bottom: 30px;
-    padding: 20px;
 }
 
 /* Apps Grid */
@@ -194,11 +147,8 @@ body {
 
 /* App Card */
 .app-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
     padding: 20px;
     cursor: pointer;
     transition: all 0.3s;
@@ -211,8 +161,7 @@ body {
 
 .app-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px var(--glass-shadow);
-    border-color: var(--accent-blue);
+    background: var(--accent-blue);
 }
 
 .app-card.selected {
@@ -268,8 +217,8 @@ body {
 .app-card-link {
     margin-top: auto;
     padding-top: 15px;
-    border-top: 1px solid var(--glass-border);
-    color: var(--accent-blue);
+    border-top: 1px solid var(--text-secondary);
+    color: var(--text-primary);
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -282,8 +231,6 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
     display: none;
     justify-content: center;
     align-items: center;
@@ -300,6 +247,9 @@ body {
     max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
+    background: var(--bg-secondary);
+    padding: 30px;
+    border-radius: 8px;
 }
 
 .modal-header {
@@ -308,7 +258,7 @@ body {
     align-items: center;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--text-secondary);
 }
 
 .modal-header h2 {
@@ -340,9 +290,9 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--glass-border);
-    border-radius: 10px;
-    background: var(--bg-secondary);
+    border: 1px solid var(--text-secondary);
+    border-radius: 8px;
+    background: var(--bg-primary);
     color: var(--text-primary);
     font-size: 1rem;
     font-family: inherit;

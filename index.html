@@ -11,10 +11,27 @@
     
     <header class="glass-header">
         <div class="header-content">
-            <h1 class="logo">JLTOOLS2</h1>
+            <div class="header-left">
+                <h1 class="logo">JLTOOLS2</h1>
+                <div class="nav-buttons">
+                    <button class="glass-btn" onclick="openAddModal()">
+                        <span class="icon">➕</span>
+                        Subir App
+                    </button>
+                    <button class="glass-btn" onclick="openEditSelectModal()">
+                        <span class="icon">✏️</span>
+                    </button>
+                    <button class="glass-btn" onclick="toggleSelectMode()">
+                        <span class="icon">☑️</span>
+                    </button>
+                    <button class="glass-btn hidden" id="deleteSelectedBtn" onclick="deleteSelectedApps()">
+                        <span class="icon">🗑️</span>
+                    </button>
+                </div>
+            </div>
             <div class="header-controls">
                 <div class="clock" id="clock">00:00:00</div>
-                <button class="glass-btn theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <button class="glass-btn theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
                     <span class="icon">🌙</span>
                 </button>
             </div>
@@ -22,24 +39,6 @@
     </header>
 
     <main class="main-content">
-        <div class="action-bar glass-panel">
-            <button class="glass-btn primary" id="addAppBtn">
-                <span class="icon">➕</span>
-                Subir App
-            </button>
-            <button class="glass-btn secondary" id="editAppsBtn">
-                <span class="icon">✏️</span>
-                Editar App
-            </button>
-            <button class="glass-btn danger" id="selectModeBtn">
-                <span class="icon">☑️</span>
-                Seleccionar
-            </button>
-            <button class="glass-btn danger hidden" id="deleteSelectedBtn">
-                <span class="icon">🗑️</span>
-                Eliminar Seleccionados
-            </button>
-        </div>
 
         <div class="apps-grid" id="appsGrid">
             <!-- Las cards se generarán dinámicamente -->
@@ -47,8 +46,8 @@
     </main>
 
     <!-- Modal para subir/editar app -->
-    <div class="modal glass-modal" id="appModal">
-        <div class="modal-content glass-panel">
+    <div class="modal" id="appModal">
+        <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle">Subir App</h2>
                 <button class="close-btn" id="closeModal">✕</button>
@@ -73,16 +72,16 @@
                     <input type="url" id="appLink" required placeholder="https://...">
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="glass-btn primary">Guardar</button>
-                    <button type="button" class="glass-btn secondary" id="cancelBtn">Cancelar</button>
+                    <button type="submit" class="glass-btn">Guardar</button>
+                    <button type="button" class="glass-btn" id="cancelBtn">Cancelar</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Modal para seleccionar app a editar -->
-    <div class="modal glass-modal" id="editSelectModal">
-        <div class="modal-content glass-panel">
+    <div class="modal" id="editSelectModal">
+        <div class="modal-content">
             <div class="modal-header">
                 <h2>Seleccionar App para Editar</h2>
                 <button class="close-btn" id="closeEditModal">✕</button>
